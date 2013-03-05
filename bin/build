@@ -1,31 +1,8 @@
 #!/usr/bin/env node
-
-var fs = require('fs')
-  , path = require('path')
-  , Builder = require('component-builder')
-  , componentStylus = require('component-stylus');
-
-var builder = new Builder(process.cwd());
-
-builder.use(componentStylus);
-
-builder.on('config', function () {
-  builder.copyAssetsTo(builder.conf.build.output);
-
-  builder.conf.paths.forEach(function (path) {
-    builder.addLookup(path);
-  });
-})
-
-builder.build(function(err, res){
-  if (err) throw err;
+var Build = require('../').Build
+  , b = new Build(process.cwd());
   
-  var requiredLocals = '';
-   
-  builder.conf.local.forEach(function (pkg) {
-    requiredLocals += 'require("' + pkg + '");\n';
-  });  
-
-  fs.writeFileSync(path.join(builder.conf.build.output, builder.conf.name + '.js'), res.require + res.js + "require('" + path.join(builder.conf.name, builder.conf.main) + "');\n" + requiredLocals);
-  fs.writeFileSync(path.join(builder.conf.build.output, builder.conf.name + '.css'), res.css);
+b.build(function (package) {
+  console.log('Package Built: %s!', package.name);
+  process.exit();
 });

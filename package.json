@@ -24,6 +24,8 @@
   "dependencies": {
     "component": "~0.13.0",
     "component-stylus": "0.0.1",
-    "component-builder": "~0.6.3"
+    "component-builder": "~0.6.3",
+    "watch": "~0.5.1",
+    "debug": "~0.7.2"
   }
 }
