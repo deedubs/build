@@ -19,7 +19,7 @@
     "build": "./bin/build"
   },
   "author": "Dan Williams <me@deedubs.com>",
-  "license": "BSD",
+  "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
     "component": "~0.13.0",
